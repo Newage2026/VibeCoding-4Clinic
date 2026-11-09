@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>華陀診所｜用心照護，守護健康</title>
+  <style>
+    :root {
+      --green: #246b57;
+      --green-dark: #174b3d;
+      --mint: #eaf5ef;
+      --cream: #fbfaf5;
+      --gold: #d9ad63;
+      --ink: #263832;
+      --muted: #68766f;
+      --white: #fff;
+      --shadow: 0 12px 32px rgba(27, 72, 56, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; color: var(--ink); background: var(--cream); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    .container { width: min(1120px, 92%); margin: auto; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.94); backdrop-filter: blur(12px); border-bottom: 1px solid #e6eee8; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 76px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; color: var(--green-dark); font-size: 1.25rem; }
+    .brand-mark { width: 43px; height: 43px; border-radius: 14px; display: grid; place-items: center; color: white; background: var(--green); font-size: 1.45rem; }
+    .nav-links { display: flex; gap: 23px; align-items: center; font-size: .94rem; color: #455b51; }
+    .nav-links a:hover { color: var(--green); }
+    .btn { display: inline-flex; justify-content: center; align-items: center; border: 0; border-radius: 999px; padding: 12px 22px; font-weight: 800; cursor: pointer; transition: .2s; }
+    .btn-primary { color: white; background: var(--green); box-shadow: 0 7px 18px rgba(36,107,87,.2); }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .btn-light { background: white; color: var(--green); border: 1px solid #d7e7dc; }
+    .hero { overflow: hidden; padding: 76px 0 70px; background: radial-gradient(circle at 85% 20%, #d9eee1 0, transparent 30%), linear-gradient(120deg, #f6fbf5, #edf6ef); }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 48px; }
+    .eyebrow { display: inline-flex; gap: 8px; align-items: center; color: var(--green); background: #dcefe3; padding: 6px 13px; border-radius: 999px; font-size: .88rem; font-weight: 800; }
+    h1 { font-size: clamp(2.3rem, 5vw, 4.1rem); line-height: 1.2; margin: 20px 0; letter-spacing: .02em; }
+    h1 span { color: var(--green); }
+    .hero p { color: var(--muted); font-size: 1.08rem; max-width: 550px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-note { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 26px; color: #52665c; font-size: .9rem; }
+    .hero-note span::before { content: "✓"; color: var(--green); font-weight: 900; margin-right: 7px; }
+    .hero-art { min-height: 370px; border-radius: 32px; background: linear-gradient(145deg, #b8d9c3, #e3f0e5); position: relative; display: grid; place-items: center; box-shadow: var(--shadow); }
+    .hero-art::before, .hero-art::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.45); }
+    .hero-art::before { width: 220px; height: 220px; top: 28px; right: 25px; }
+    .hero-art::after { width: 110px; height: 110px; bottom: 25px; left: 22px; }
+    .medical-icon { z-index: 1; font-size: 8rem; filter: drop-shadow(0 12px 12px rgba(32,85,62,.15)); }
+    .floating-card { position: absolute; z-index: 2; background: white; border-radius: 18px; padding: 14px 18px; box-shadow: var(--shadow); font-size: .9rem; }
+    .floating-card strong { display: block; color: var(--green); font-size: 1.05rem; }
+    .fc-top { top: 34px; left: 24px; }
+    .fc-bottom { bottom: 30px; right: 22px; }
+    section { padding: 76px 0; scroll-margin-top: 82px; }
+    .section-head { text-align: center; max-width: 680px; margin: 0 auto 38px; }
+    .section-head .eyebrow { margin-bottom: 10px; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.3; margin: 8px 0 12px; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: white; border: 1px solid #e6eee8; border-radius: 22px; padding: 25px; box-shadow: 0 6px 20px rgba(27,72,56,.04); }
+    .card-icon { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 16px; background: var(--mint); font-size: 1.55rem; margin-bottom: 16px; }
+    .card h3 { margin: 0 0 8px; font-size: 1.17rem; }
+    .card p { color: var(--muted); margin: 0; font-size: .95rem; }
+    .doctor-section { background: #f0f6f0; }
+    .doctor-grid { display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: 48px; }
+    .doctor-portrait { min-height: 320px; border-radius: 28px; background: linear-gradient(150deg, #dcece0, #b9d7c4); display: grid; place-items: center; font-size: 7rem; }
+    .doctor-copy h2 { margin-top: 10px; }
+    .doctor-copy p { color: var(--muted); }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 9px; margin: 20px 0; }
+    .tag { padding: 7px 12px; border-radius: 999px; color: var(--green); background: #deeee3; font-size: .88rem; font-weight: 700; }
+    .schedule-wrap { overflow-x: auto; background: white; border-radius: 20px; box-shadow: var(--shadow); }
+    table { border-collapse: collapse; width: 100%; min-width: 600px; text-align: center; }
+    th, td { padding: 17px 14px; border-bottom: 1px solid #edf1ed; }
+    th { background: var(--green); color: white; font-weight: 800; }
+    tr:last-child td { border-bottom: 0; }
+    .available { display: inline-block; background: #e0f3e7; color: #246b45; padding: 4px 10px; border-radius: 999px; font-size: .83rem; }
+    .off { color: #8a938d; }
+    .booking-section { background: #eaf4ed; }
+    .booking-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 35px; align-items: start; }
+    .booking-info { padding: 10px 0; }
+    .booking-info p { color: var(--muted); }
+    .info-line { display: flex; gap: 12px; align-items: flex-start; margin: 18px 0; }
+    .info-line .card-icon { flex: 0 0 46px; width: 46px; height: 46px; margin: 0; }
+    form { background: white; padding: 28px; border-radius: 24px; box-shadow: var(--shadow); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-weight: 800; font-size: .9rem; }
+    input, select, textarea { width: 100%; border: 1px solid #dce6de; border-radius: 12px; padding: 12px 13px; background: #fcfdfb; color: var(--ink); outline: none; }
+    input:focus, select:focus, textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px #dcefe3; }
+    textarea { resize: vertical; min-height: 90px; }
+    .form-note { font-size: .82rem; color: var(--muted); margin: 13px 0 17px; }
+    #formMessage { display: none; padding: 12px 14px; border-radius: 12px; background: #e0f3e7; color: #205d42; margin-top: 14px; }
+    .health-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .health-card { padding: 0; overflow: hidden; }
+    .health-top { padding: 24px 24px 14px; background: linear-gradient(135deg, #e3f2e7, #f5f8ee); font-size: 2rem; }
+    .health-body { padding: 20px 24px 24px; }
+    .health-body h3 { margin: 0 0 8px; }
+    .health-body p { color: var(--muted); font-size: .94rem; }
+    .health-body details { margin-top: 12px; }
+    summary { color: var(--green); cursor: pointer; font-weight: 800; }
+    .contact-section { background: #f2f7f2; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .map-placeholder { min-height: 260px; border-radius: 22px; background: linear-gradient(135deg, #d9e9dc, #edf3e8); display: grid; place-items: center; text-align: center; padding: 25px; color: var(--green-dark); }
+    .map-placeholder span { font-size: 3rem; }
+    .contact-card p { color: var(--muted); }
+    footer { padding: 28px 0; background: var(--green-dark); color: #e9f3ec; text-align: center; font-size: .9rem; }
+    footer p { margin: 4px 0; }
+    .disclaimer { opacity: .78; font-size: .8rem; }
+    @media (max-width: 820px) {
+      .nav { flex-wrap: wrap; padding: 13px 0; }
+      .nav-links { order: 3; width: 100%; overflow-x: auto; padding: 5px 0; gap: 18px; }
+      .nav-links a { white-space: nowrap; }
+      .nav > .btn { margin-left: auto; }
+      .hero-grid, .doctor-grid, .booking-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 48px; }
+      .hero-art { min-height: 300px; }
+      .cards, .health-grid { grid-template-columns: 1fr 1fr; }
+      .doctor-portrait { min-height: 230px; }
+    }
+    @media (max-width: 560px) {
+      section { padding: 54px 0; }
+      .cards, .health-grid, .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      form { padding: 21px; }
+      .hero-art { min-height: 260px; }
+      .medical-icon { font-size: 6rem; }
+      .fc-top { top: 18px; left: 12px; }
+      .fc-bottom { bottom: 15px; right: 12px; }
+      .hero-note { gap: 8px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="華陀診所首頁">
+        <span class="brand-mark">✚</span><span>華陀診所<small style="display:block;font-size:.68rem;letter-spacing:.12em;color:#71867a;font-weight:600">HUATUO CLINIC</small></span>
+      </a>
+      <nav class="nav-links" aria-label="主要導覽">
+        <a href="#doctor">醫師介紹</a><a href="#schedule">診次表</a><a href="#booking">預約掛號</a><a href="#health">衛教資訊</a><a href="#contact">交通資訊</a>
+      </nav>
+      <a class="btn btn-primary" href="#booking">立即預約</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">🌿 專業・關懷・安心</span>
+          <h1>用心照護每一天，<br><span>守護全家人的健康。</span></h1>
+          <p>華陀診所以親切、細心的服務陪伴您。從日常健康諮詢到定期追蹤，讓每一次看診都更安心。</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#booking">預約看診　→</a><a class="btn btn-light" href="#schedule">查看診次表</a></div>
+          <div class="hero-note"><span>親切看診</span><span>清楚說明</span><span>重視預防保健</span></div>
+        </div>
+        <div class="hero-art" aria-label="診所健康照護插圖">
+          <div class="floating-card fc-top">🌱 <strong>健康從關心開始</strong>陪伴您照顧自己</div>
+          <div class="medical-icon">🩺</div>
+          <div class="floating-card fc-bottom">✚ <strong>華陀診所</strong>您的健康好夥伴</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">OUR CARE</span><h2>讓看診更簡單、更安心</h2><p>以清楚的資訊與貼心的流程，協助您掌握看診前後的重要事項。</p></div>
+        <div class="cards">
+          <article class="card"><div class="card-icon">🩺</div><h3>專業診療</h3><p>仔細聆聽您的需求，提供清楚易懂的健康說明與照護建議。</p></article>
+          <article class="card"><div class="card-icon">📅</div><h3>便利預約</h3><p>先查看門診時段並送出預約需求，減少現場等候的不確定性。</p></article>
+          <article class="card"><div class="card-icon">💚</div><h3>健康衛教</h3><p>分享日常保健、用藥提醒與複診注意事項，陪您建立健康習慣。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="doctor-section" id="doctor">
+      <div class="container doctor-grid">
+        <div class="doctor-portrait" aria-label="醫師圖示">👨🏻‍⚕️</div>
+        <div class="doctor-copy">
+          <span class="eyebrow">MEET YOUR DOCTOR</span>
+          <h2>醫師簡介</h2>
+          <h3>華陀診所｜主治醫師</h3>
+          <p>我們相信，良好的醫療從溝通與理解開始。看診時會依照每位民眾的狀況進行評估，說明照護方向，並鼓勵您主動提出疑問。</p>
+          <div class="tag-list"><span class="tag">細心問診</span><span class="tag">健康管理</span><span class="tag">預防保健</span><span class="tag">重視醫病溝通</span></div>
+          <p><strong>看診理念：</strong>以人為本、耐心傾聽，協助您了解自身健康並做出合適的照護選擇。</p>
+          <a class="btn btn-primary" href="#booking">預約諮詢</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">CLINIC HOURS</span><h2>門診診次表</h2><p>以下為網站展示用的範例時段，實際看診時間請以診所公告為準。</p></div>
+        <div class="schedule-wrap">
+          <table>
+            <thead><tr><th>門診時段</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th></tr></thead>
+            <tbody>
+              <tr><td><strong>上午</strong><br>09:00–12:00</td><td><span class="available">看診</span></td><td><span class="available">看診</span></td><td><span class="available">看診</span></td><td><span class="available">看診</span></td><td><span class="available">看診</span></td><td><span class="available">看診</span></td></tr>
+              <tr><td><strong>下午</strong><br>14:00–17:00</td><td><span class="available">看診</span></td><td><span class="available">看診</span></td><td class="off">休診</td><td><span class="available">看診</span></td><td><span class="available">看診</span></td><td class="off">休診</td></tr>
+              <tr><td><strong>晚上</strong><br>18:00–21:00</td><td><span class="available">看診</span></td><td><span class="available">看診</span></td><td><span class="available">看診</span></td><td><span class="available">看診</span></td><td><span class="available">看診</span></td><td class="off">休診</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="text-align:center;color:#68766f;font-size:.88rem;margin-top:15px">週日及國定假日看診安排，請先來電確認。</p>
+      </div>
+    </section>
+
+    <section class="booking-section" id="booking">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">APPOINTMENT</span><h2>預約看診</h2><p>填寫基本資料與希望時段，先送出預約需求。</p></div>
+        <div class="booking-grid">
+          <div class="booking-info">
+            <h2>選擇適合您的看診時間</h2>
+            <p>請留下正確聯絡方式，方便診所確認預約。此頁為課堂展示網站，表單不會真的傳送資料或完成掛號。</p>
+            <div class="info-line"><div class="card-icon">🗓️</div><div><strong>預約日期與時段</strong><br><span style="color:#68766f">可選擇日期、上午／下午／晚上。</span></div></div>
+            <div class="info-line"><div class="card-icon">🔔</div><div><strong>複診與提醒</strong><br><span style="color:#68766f">請依醫師指示回診，並留意用藥說明。</span></div></div>
+            <div class="info-line"><div class="card-icon">☎️</div><div><strong>需要協助？</strong><br><span style="color:#68766f">請使用診所正式公告的電話聯繫。</span></div></div>
+          </div>
+          <form id="appointmentForm">
+            <div class="form-grid">
+              <div class="field"><label for="patientName">姓名 *</label><input id="patientName" name="patientName" required placeholder="請輸入姓名"></div>
+              <div class="field"><label for="phone">聯絡電話 *</label><input id="phone" name="phone" required type="tel" placeholder="請輸入電話"></div>
+              <div class="field"><label for="visitDate">預約日期 *</label><input id="visitDate" name="visitDate" type="date" required></div>
+              <div class="field"><label for="session">預約時段 *</label><select id="session" name="session" required><option value="">請選擇時段</option><option>上午 09:00–12:00</option><option>下午 14:00–17:00</option><option>晚上 18:00–21:00</option></select></div>
+              <div class="field full"><label for="visitType">看診類別</label><select id="visitType" name="visitType"><option>一般門診</option><option>初診</option><option>複診</option><option>健康諮詢</option></select></div>
+              <div class="field full"><label for="note">症狀或備註（選填）</label><textarea id="note" name="note" placeholder="可簡單填寫想詢問的事項"></textarea></div>
+            </div>
+            <p class="form-note">請勿在此填寫身分證字號或其他不必要的敏感個人資料。</p>
+            <button class="btn btn-primary" type="submit" style="width:100%">送出預約需求</button>
+            <div id="formMessage" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="health">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">HEALTH TIPS</span><h2>衛教資訊</h2><p>日常多一分留意，健康就多一分保障。</p></div>
+        <div class="health-grid">
+          <article class="card health-card"><div class="health-top">🌿</div><div class="health-body"><h3>日常健康管理</h3><p>規律作息、均衡飲食、適度活動，並依個人狀況安排健康檢查。</p><details><summary>閱讀提醒</summary><p>若有持續不適或症狀加劇，請尋求醫療專業人員評估，不要自行延誤就醫。</p></details></div></article>
+          <article class="card health-card"><div class="health-top">💊</div><div class="health-body"><h3>安全用藥提醒</h3><p>服藥前確認藥品名稱、用法、用量與注意事項。</p><details><summary>閱讀提醒</summary><p>請依醫囑或藥袋標示使用藥品，不自行增減劑量；有疑問時請詢問醫師或藥師。</p></details></div></article>
+          <article class="card health-card"><div class="health-top">📋</div><div class="health-body"><h3>複診注意事項</h3><p>依照醫師建議回診，必要時帶上用藥清單及相關檢查資料。</p><details><summary>閱讀提醒</summary><p>若無法依約回診，請提前聯繫診所確認可安排的時段。</p></details></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">VISIT US</span><h2>交通與候診資訊</h2><p>出發前先確認地址、交通方式與當日門診公告。</p></div>
+        <div class="contact-grid">
+          <article class="card contact-card">
+            <h3>📍 診所聯絡資訊</h3>
+            <p><strong>診所名稱：</strong>華陀診所</p>
+            <p><strong>科別：</strong>一般門診（展示資料）</p>
+            <p><strong>地址：</strong>請填入診所實際地址</p>
+            <p><strong>電話：</strong>請填入診所正式聯絡電話</p>
+            <p><strong>停車資訊：</strong>請依實際位置補充附近停車場或大眾運輸資訊。</p>
+            <a class="btn btn-light" href="#booking">前往預約表單</a>
+          </article>
+          <div class="map-placeholder"><div><span>🗺️</span><h3>診所位置示意區</h3><p>請將此區替換成正確地址的地圖或交通指引。</p></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container"><p><strong>華陀診所 HUATUO CLINIC</strong></p><p>用心照護，守護健康。</p><p class="disclaimer">本網站為課堂展示範例；醫師、診次、地址、電話及預約功能皆需依真實資訊更新。網站資訊不取代醫師診斷。</p><p>© <span id="year"></span> 華陀診所｜All rights reserved.</p></div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const dateInput = document.getElementById('visitDate');
+    const today = new Date();
+    const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+    dateInput.min = localToday;
+
+    document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('patientName').value.trim();
+      const date = dateInput.value;
+      const session = document.getElementById('session').value;
+      const message = document.getElementById('formMessage');
+      if (!name || !date || !session) return;
+      message.style.display = 'block';
+      message.textContent = `謝謝 ${name}！已在此展示頁面收到您的預約需求（${date}，${session}）。提醒：這是示範網站，資料尚未傳送至診所，請以正式電話或掛號系統確認。`;
+      message.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
+</body>
+</html>
